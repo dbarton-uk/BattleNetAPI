@@ -14,7 +14,6 @@ public class WOWAchievementIndex: Codable {
 }
 
 
-
 public class WOWAchievementCategory: Codable {
     public let id: Int
     public let name: String
