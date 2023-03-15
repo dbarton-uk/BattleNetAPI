@@ -2241,7 +2241,7 @@ public struct WS_WorldOfWarcraft: WebService {
         call(endpoint: API.talentTreeIndex, namespace: namespace, completion: completion)
     }
     
-    public func getDataAtGameDataHref(href: String, namespace: APINamespace? = .static, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
+    public func getGameData(at href: String, namespace: APINamespace? = .static, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         callResource(url: href, apiType: APIType.gameData, completion: completion)
     }
     
