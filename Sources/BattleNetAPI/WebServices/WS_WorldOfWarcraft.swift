@@ -162,6 +162,7 @@ public struct WS_WorldOfWarcraft: WebService {
         case spellSearch([String: String]?)
         
         case talentIndex
+        case talentTreeIndex
         case talent(Int)
         case pvpTalentIndex
         case pvpTalent(Int)
@@ -506,6 +507,8 @@ public struct WS_WorldOfWarcraft: WebService {
             case .spellSearch:
                 return "/search/spell"
             
+            case .talentTreeIndex:
+                return "/talent-tree/index"
             case .talentIndex:
                 return "/talent/index"
             case .talent(let id):
@@ -658,7 +661,7 @@ public struct WS_WorldOfWarcraft: WebService {
                  .regionIndex, .region,
                  .reputationFactionIndex, .reputationFaction, .reputationTierIndex, .reputationTier,
                  .spell, .spellMedia, .spellSearch,
-                 .talentIndex, .talent, .pvpTalentIndex, .pvpTalent,
+                 .talentTreeIndex, .talentIndex, .talent, .pvpTalentIndex, .pvpTalent,
                  .techTalentTreeIndex, .techTalentTree, .techTalentIndex, .techTalent, .techTalentMedia,
                  .titleIndex, .title,
                  .tokenIndex:
@@ -2229,6 +2232,16 @@ public struct WS_WorldOfWarcraft: WebService {
     // MARK: Talent API
     
     /**
+     Returns an index of talent trees
+     
+     - parameter namespace: The namespace to use to locate this document
+     - parameter completion: Returns a Result with the Data if `success` or an HTTPError if `failure`
+     */
+    public func getTalentTreeIndex(namespace: APINamespace? = .static, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
+        call(endpoint: API.talentTreeIndex, namespace: namespace, completion: completion)
+    }
+    
+    /**
      Returns an index of talents.
      
      - parameter namespace: The namespace to use to locate this document.
@@ -2464,9 +2477,7 @@ public struct WS_WorldOfWarcraft: WebService {
     public func getCharacterAchievementStatistics(characterName: String, realmSlug: String, namespace: APINamespace? = .profile, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         call(endpoint: API.characterAchievementStatistics(realmSlug: realmSlug, characterName: characterName), namespace: namespace, completion: completion)
     }
-    
-    
-    
+
     // MARK: Character Appearance API
     
     /**

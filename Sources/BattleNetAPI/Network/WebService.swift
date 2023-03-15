@@ -40,6 +40,7 @@ extension WebService {
 
 
 extension WebService {
+    
     /// Makes a web service call, configured for the endpoint
     func call(endpoint: APICall, method: HTTPMethod = .get, headers: [HTTPHeader]? = nil, body: Data? = nil, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         call(endpoint: endpoint, namespace: nil, method: method, headers: headers, body: body, completion: completion)
